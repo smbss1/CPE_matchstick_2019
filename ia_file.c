@@ -21,13 +21,11 @@ int get_number_of_stick(char **map, int line)
 void ia_play(match_t *match)
 {
     int line = (rand() % (match->lines - 1 + 1)) + 1;
-    int num_max = get_number_of_stick(match->map, line);
-    if (num_max  == 0) {
+    int num = (rand() % (match->coup_max - 1 + 1)) + 1;
+    if (!erasable(match, line, num)) {
         ia_play(match);
         return;
     }
-    int num = (rand() % (num_max - 1 + 1)) + 1;
-    R_DEV_ASSERT(!erasable(match, line, num), "", ia_play(match));
     erase_stick(match, line, num);
     my_printf("AI's turn...\n");
     my_printf("AI's removed %d match(es) from line %d\n", num, line);
