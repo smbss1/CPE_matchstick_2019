@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "my.h": "c",
+        "sstream": "c",
+        "stdarg.h": "c",
+        "*.tcc": "c",
+        "string": "c",
+        "istream": "c",
+        "streambuf": "c",
+        "random": "c",
+        "array": "c",
+        "stdio.h": "c",
+        "match.h": "c",
+        "debug.h": "c",
+        "signal.h": "c"
+    }
+}
