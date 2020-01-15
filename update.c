@@ -14,6 +14,9 @@ int player_loose();
 
 int ai_loose(int st);
 
+const char *error1 = "Error: you cannot remove more than";
+const char *pl_remove = "Player removed";
+
 int get_stick_all(char **map)
 {
     int count = 0;
@@ -40,14 +43,12 @@ void player_turn(match_t *match, char *buffe)
         return;
     }
     if (!erasable(match, line, num_stick)) {
-        my_printf("Error: you cannot remove more than ");
-        my_printf("%d matches per turn\n", match->coup_max);
+        my_printf("%s %d matches per turn\n", error1, match->coup_max);
         player_turn(match, buffe);
         return;
     }
     erase_stick(match, line, num_stick);
-    my_printf("Player removed %d match(es) from line %d\n",
-                num_stick, line);
+    my_printf("%s %d match(es) from line %d\n", pl_remove, num_stick, line);
 }
 
 int update(match_t *match)

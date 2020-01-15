@@ -30,7 +30,6 @@ void ia_play(match_t *match)
     my_printf("AI's turn...\n");
     my_printf("AI's removed %d match(es) from line %d\n", num, line);
     print_map(match->map, match->row);
-    if (get_stick_all(match->map) == 0) {
+    if (get_stick_all(match->map) == 0)
         emit("ai_loose", 0, 0);
-    }
 }
