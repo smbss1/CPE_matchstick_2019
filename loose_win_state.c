@@ -14,5 +14,5 @@ int player_loose(int st)
 int ai_loose(int st)
 {
     my_putstr("I lost... snif... but I'll get you next time!!\n");
-    return (1);
+    return (2);
 }
