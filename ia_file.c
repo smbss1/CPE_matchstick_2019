@@ -27,7 +27,7 @@ void ia_play(match_t *match)
         return;
     }
     int num = (rand() % (num_max - 1 + 1)) + 1;
-    R_DEV_ASSERT(!erasable(match->map, line, num), "", ia_play(match));
+    R_DEV_ASSERT(!erasable(match, line, num), "", ia_play(match));
     erase_stick(match, line, num);
     my_printf("AI's turn...\n");
     my_printf("AI's removed %d match(es) from line %d\n", num, line);

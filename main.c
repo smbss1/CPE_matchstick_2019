@@ -31,11 +31,13 @@ void my_memset(void *ptr, int x, int n)
     return ptr;
 }
 
-int erasable(char **map, int line, int num)
+int erasable(match_t *match, int line, int num)
 {
+    if (num > match->coup_max)
+        return (0);
     int count = 0;
-    for (int i = 0; map[line][i]; i++)
-        if (map[line][i] == '|')
+    for (int i = 0; match->map[line][i]; i++)
+        if (match->map[line][i] == '|')
             count++;
     if (num <= count)
         return (1);
@@ -54,9 +56,12 @@ void erase_stick(match_t *match, int line, int num)
 
 int main(int ac, char **av)
 {
+    if (ac != 3)
+        return (84);
     srandom(time(NULL));
     match_t match = {0};
-    match.lines = 4;
+    match.lines = my_getnbr(av[1]);
+    match.coup_max = my_getnbr(av[2]);
     match.row = match.lines + 2;
     match.col = match.lines + match.lines + 1;
     match.map = init_map(match.row, match.col);

@@ -10,7 +10,7 @@ SRC =	main.c my_scanf.c debug.c print_map.c \
 		handle_error.c init_map.c my_event.c \
 		update.c loose_win_state.c
 OBJ = $(SRC:.c=.o)
-NAME = main
+NAME = matchstick
 
 CFLAGS += -I ./include/
 CFLAGS += -L ./lib/

@@ -24,23 +24,30 @@ int get_stick_all(char **map)
     return (count);
 }
 
-int player_turn(match_t *match, char *buffe)
+void player_turn(match_t *match, char *buffe)
 {
-    my_printf("You turn:\nLine: ");
+    my_printf("Line: ");
     buffe = get_next_line(0);
-    if (line_error(buffe, match) == 84)
-        return (84);
+    if (line_error(buffe, match) == 84) {
+        player_turn(match, buffe);
+        return;
+    }
     int line = my_getnbr(buffe);
     my_putstr("Matches: ");
     int num_stick = my_getnbr(get_next_line(0));
-    if (match_error(num_stick) == 84)
-        return (84);
-    R_DEV_ASSERT(!erasable(match->map, line, num_stick),
-        "Error number\n", return (84));
+    if (match_error(num_stick) == 84) {
+        player_turn(match, buffe);
+        return;
+    }
+    if (!erasable(match, line, num_stick)) {
+        my_printf("Error: you cannot remove more than ");
+        my_printf("%d matches per turn\n", match->coup_max);
+        player_turn(match, buffe);
+        return;
+    }
     erase_stick(match, line, num_stick);
     my_printf("Player removed %d match(es) from line %d\n",
                 num_stick, line);
-    return (0);
 }
 
 int update(match_t *match)
@@ -51,8 +58,8 @@ int update(match_t *match)
     on("player_loose", &run, player_loose, NULL);
     on("ai_loose", &run, ai_loose, NULL);
     while (run == 0) {
-        if (player_turn(match, buffe) == 84)
-            continue;
+        my_printf("You turn:\n");
+        player_turn(match, buffe);
         if (get_stick_all(match->map) == 0) {
             print_map(match->map, match->row);
             emit("player_loose", 0, 0);

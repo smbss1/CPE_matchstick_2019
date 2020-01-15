@@ -13,6 +13,7 @@ typedef struct match
     int lines;
     int row;
     int col;
+    int coup_max;
     char **map;
 } match_t;
 
