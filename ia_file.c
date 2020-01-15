@@ -9,9 +9,6 @@
 #include "match.h"
 #include "debug.h"
 
-extern int LINE;
-extern int ROW;
-
 int get_number_of_stick(char **map, int line)
 {
     int count = 0;
@@ -21,18 +18,21 @@ int get_number_of_stick(char **map, int line)
     return (count);
 }
 
-void ia_play(char **map)
+void ia_play(match_t *match)
 {
-    int line = (rand() % (LINE - 1 + 1)) + 1;
-    int num_max = get_number_of_stick(map, line);
+    int line = (rand() % (match->lines - 1 + 1)) + 1;
+    int num_max = get_number_of_stick(match->map, line);
     if (num_max  == 0) {
-        ia_play(map);
+        ia_play(match);
         return;
     }
     int num = (rand() % (num_max - 1 + 1)) + 1;
-    R_DEV_ASSERT(!erasable(map, line, num), "", ia_play(map));
-    erase_stick(map, line, num);
+    R_DEV_ASSERT(!erasable(match->map, line, num), "", ia_play(match));
+    erase_stick(match, line, num);
     my_printf("AI's turn...\n");
     my_printf("AI's removed %d match(es) from line %d\n", num, line);
-    print_map(map, ROW);
+    print_map(match->map, match->row);
+    if (get_stick_all(match->map) == 0) {
+        emit("ai_loose", 0, 0);
+    }
 }

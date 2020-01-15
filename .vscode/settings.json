@@ -12,6 +12,7 @@
         "stdio.h": "c",
         "match.h": "c",
         "debug.h": "c",
-        "signal.h": "c"
+        "signal.h": "c",
+        "algorithm": "c"
     }
 }

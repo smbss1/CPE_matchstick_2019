@@ -13,10 +13,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-const int LINE = 4;
-const int ROW = LINE + 2;
-const int COL = LINE + LINE + 1;
-
 void on(char *name, void *var, void *handler, void *handler2);
 
 int my_str_contain(char *str, char c)
@@ -46,21 +42,29 @@ int erasable(char **map, int line, int num)
     return (0);
 }
 
-void erase_stick(char **map, int line, int num)
+void erase_stick(match_t *match, int line, int num)
 {
-    int col = COL - 2;
-    for (int i = COL - 2; map[line][i] != '|' && map[line][i]; i--, col--);
-    for (int i = COL - 2; i > col - num && i > 0; i--) {
-        map[line][i] = ' ';
-    }
+    int col = match->col - 2;
+    for (int i = match->col - 2;
+        match->map[line][i] != '|' && match->map[line][i];
+        i--, col--);
+    for (int i = match->col - 2; i > col - num && i > 0; i--)
+        match->map[line][i] = ' ';
 }
 
 int main(int ac, char **av)
 {
     srandom(time(NULL));
-    char **map = init_map(ROW, COL);
-    print_map(map, ROW);
-    update(map);
-    free_2d_array(map);
+    match_t match = {0};
+    match.lines = 4;
+    match.row = match.lines + 2;
+    match.col = match.lines + match.lines + 1;
+    match.map = init_map(match.row, match.col);
+    print_map(match.map, match.row);
+    int up = update(&match);
+    if (up > 0) {
+        free_2d_array(match.map);
+        return (up);
+    }
     return (0);
 }

@@ -23,10 +23,11 @@ int emit(char *name, void *value, void *value2)
     int result = 0;
     for (int i = 0; i < listeners.listener_count; i++) {
         if (my_strcmp(name, listeners.listeners[i].name) == 0 &&
-            listeners.listeners[i].handle != NULL) {
+            listeners.listeners[i].handle != NULL &&
+            !listeners.listeners[i].variable) {
             listeners.listeners[i].handle(value);
         }
-        if (my_strcmp(name, listeners.listeners[i].name) == 0 &&
+        else if (my_strcmp(name, listeners.listeners[i].name) == 0 &&
             listeners.listeners[i].handle != NULL &&
             listeners.listeners[i].variable) {
             *((int *)listeners.listeners[i].variable) =

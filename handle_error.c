@@ -12,8 +12,6 @@
 #include <string.h>
 #include <stdio.h>
 
-extern int LINE;
-
 int my_exit(int status)
 {
     if (status < 0)
@@ -21,9 +19,9 @@ int my_exit(int status)
     return (status);
 }
 
-int line_error(char *buffe)
+int line_error(char *buffe, match_t *match)
 {
-    R_DEV_ASSERT(!buffe, "", emit("exit", 0));
+    R_DEV_ASSERT(!buffe, "", emit("exit", 1, 0));
     R_DEV_ASSERT(!buffe, "", return (84));
     R_DEV_ASSERT(!*buffe, "Error no line typing\n", return (84));
     R_DEV_ASSERT(!my_str_isnum(buffe),
@@ -31,7 +29,7 @@ int line_error(char *buffe)
     R_DEV_ASSERT(my_str_contain(buffe, ' '),
         "Error: invalid input (positive number expected)\n", return (84));
     int line = my_getnbr(buffe);
-    R_DEV_ASSERT(line > LINE || line < 1,
+    R_DEV_ASSERT(line > match->lines || line < 1,
         "Error: this line is out of range\n", return (84));
     return (0);
 }
