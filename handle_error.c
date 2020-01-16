@@ -21,8 +21,8 @@ int my_exit(int status)
 
 int line_error(char *buffe, match_t *match)
 {
-    R_DEV_ASSERT(!buffe, "", emit("exit", 1, 0));
-    R_DEV_ASSERT(!buffe, "", return (84));
+    R_DEV_ASSERT(!buffe, "", emit("exit", 0, 0));
+    R_DEV_ASSERT(!buffe, "", return (83));
     R_DEV_ASSERT(!*buffe, "Error no line typing\n", return (84));
     R_DEV_ASSERT(!my_str_isnum(buffe),
         "Error: invalid input (positive number expected)\n", return (84));
