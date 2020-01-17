@@ -12,6 +12,7 @@ void dictionary_foreach(dictionary *v, int (*callback)(char *, void *))
 {
     dictionary *node = v;
     int result = 1;
+
     while (node != NULL && result) {
         if (callback != NULL)
             result = callback(node->key, node->data);
@@ -23,6 +24,7 @@ void dictionary_foreach_value(dictionary *v, int (*callback)(void *))
 {
     dictionary *node = v;
     int result = 1;
+
     while (node != NULL && result) {
         if (callback != NULL)
             result = callback(node->data);
@@ -34,6 +36,7 @@ void dictionary_foreach_key(dictionary *v, int (*callback)(char *))
 {
     dictionary *node = v;
     int result = 1;
+
     while (node != NULL && result) {
         if (callback != NULL)
             result = callback(node->key);

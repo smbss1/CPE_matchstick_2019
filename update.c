@@ -10,7 +10,7 @@
 
 int my_exit(int status);
 
-int player_loose();
+int player_loose(void);
 
 int ai_loose(int st);
 
