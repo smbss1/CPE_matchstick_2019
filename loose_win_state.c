@@ -7,7 +7,7 @@
 
 int player_loose(int st)
 {
-    my_putstr("Player loose\n");
+    my_putstr("You lost, too bad...\n");
     return (1);
 }
 

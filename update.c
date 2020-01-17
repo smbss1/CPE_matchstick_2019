@@ -37,8 +37,9 @@ int player_turn(match_t *match, char *buffe)
         return (83);
     int line = my_getnbr(buffe);
     my_putstr("Matches: ");
-    int num_stick = my_getnbr(get_next_line(0));
-    if (match_error(num_stick) == 84)
+    char *matches = get_next_line(0);
+    int num_stick = my_getnbr(matches);
+    if (match_error(match->map, matches, line, num_stick) == 84)
         return (player_turn(match, buffe));
     if (!erasable(match, line, num_stick)) {
         my_printf("%s %d matches per turn\n", error1, match->coup_max);

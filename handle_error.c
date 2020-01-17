@@ -34,8 +34,14 @@ int line_error(char *buffe, match_t *match)
     return (0);
 }
 
-int match_error(int num_stick)
+int match_error(char **map, char *matches, int line, int num_stick)
 {
+    R_DEV_ASSERT(!my_str_isnum(matches),
+        "Error: invalid input (positive number expected)\n", return (84));
+    R_DEV_ASSERT(my_str_contain(matches, ' '),
+        "Error: invalid input (positive number expected)\n", return (84));
+    R_DEV_ASSERT(num_stick > get_number_of_stick(map, line),
+        "Error: not enough matches on this line\n", return (84));
     R_DEV_ASSERT(num_stick < 1,
         "Error: you have to remove at least one match\n", return (84));
 }
