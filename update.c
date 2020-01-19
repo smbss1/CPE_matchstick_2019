@@ -6,6 +6,7 @@
 */
 #include "debug.h"
 #include "match.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 
 int my_exit(int status);

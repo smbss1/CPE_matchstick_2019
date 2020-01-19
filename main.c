@@ -15,6 +15,10 @@
 
 void on(char *name, void *var, void *handler, void *handler2);
 
+char **init_map(int row, int col);
+
+void print_map(char **map, int row);
+
 int my_str_contain(char *str, char c)
 {
     for (int i = 0; str[i] != '\0'; i++)
