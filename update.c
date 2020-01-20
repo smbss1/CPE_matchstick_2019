@@ -58,7 +58,7 @@ int update(match_t *match)
     on("player_loose", &run, player_loose, NULL);
     on("ai_loose", &run, ai_loose, NULL);
     while (run == -1) {
-        my_printf("You turn:\n");
+        my_printf("Your turn:\n");
         if (player_turn(match, buffe) == 83)
             continue;
         if (get_stick_all(match->map) == 0) {
