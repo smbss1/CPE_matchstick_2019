@@ -35,19 +35,6 @@ void my_memset(void *ptr, int x, int n)
     return ptr;
 }
 
-int erasable(match_t *match, int line, int num)
-{
-    if (num > match->coup_max)
-        return (0);
-    int count = 0;
-    for (int i = 0; match->map[line][i]; i++)
-        if (match->map[line][i] == '|')
-            count++;
-    if (num <= count)
-        return (1);
-    return (0);
-}
-
 void erase_stick(match_t *match, int line, int num)
 {
     int col = match->col - 2;
@@ -56,6 +43,13 @@ void erase_stick(match_t *match, int line, int num)
         i--, col--);
     for (int i = match->col - 2; i > col - num && i > 0; i--)
         match->map[line][i] = ' ';
+}
+
+void free_2d_array_match(match_t *match)
+{
+    for (int i = 0; i < match->row; i++)
+        free(match->map[i]);
+    free(match->map);
 }
 
 int main(int ac, char **av)
@@ -72,7 +66,7 @@ int main(int ac, char **av)
     print_map(match.map, match.row);
     int up = update(&match);
     if (up > 0) {
-        free_2d_array(match.map);
+        free_2d_array_match(&match);
         return (up);
     }
     return (0);

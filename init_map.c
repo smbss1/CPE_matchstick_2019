@@ -10,8 +10,8 @@
 char **init_map(int row, int col)
 {
     char **map = mem_alloc_2d_array(row, col);
+
     my_memset_array(map, '*', row, col);
-    fill_array_whitespace(map, 1, 1);
     for (int i = row - 2, k = 0; i > 0; i--, k++) {
         for (int j = col - 2; j > 0; j--)
             map[i][j] = '|';

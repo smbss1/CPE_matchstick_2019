@@ -6,9 +6,8 @@
 #
 
 SRC =	main.c my_scanf.c debug.c print_map.c \
-		fill_array_whitespace.c ia_file.c \
-		handle_error.c init_map.c my_event.c \
-		update.c loose_win_state.c
+		ia_file.c handle_error.c init_map.c my_event.c \
+		update.c loose_win_state.c erasable.c
 OBJ = $(SRC:.c=.o)
 NAME = matchstick
 

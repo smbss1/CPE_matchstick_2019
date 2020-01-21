@@ -26,12 +26,12 @@ void ia_play(match_t *match)
         ia_play(match);
         return;
     }
-    if (get_stick_all(match->map) % 3 == 0)
+    if (get_stick_all(match) % 3 == 0)
         num = 1;
     erase_stick(match, line, num);
     my_printf("AI's turn...\n");
     my_printf("AI's removed %d match(es) from line %d\n", num, line);
     print_map(match->map, match->row);
-    if (get_stick_all(match->map) == 0)
+    if (get_stick_all(match) == 0)
         emit("ai_loose", 0, 0);
 }

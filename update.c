@@ -4,6 +4,7 @@
 ** File description:
 ** update func
 */
+
 #include "debug.h"
 #include "match.h"
 #include "get_next_line.h"
@@ -18,12 +19,12 @@ int ai_loose(int st);
 const char *error1 = "Error: you cannot remove more than";
 const char *pl_remove = "Player removed";
 
-int get_stick_all(char **map)
+int get_stick_all(match_t *match)
 {
     int count = 0;
-    for (int i = 0; map[i]; i++)
-        for (int j = 0; map[i][j]; j++)
-            if (map[i][j] == '|')
+    for (int i = 0; i < match->row; i++)
+        for (int j = 0; j < match->col; j++)
+            if (match->map[i][j] == '|')
                 count++;
     return (count);
 }
@@ -61,7 +62,7 @@ int update(match_t *match)
         my_printf("Your turn:\n");
         if (player_turn(match, buffe) == 83)
             continue;
-        if (get_stick_all(match->map) == 0) {
+        if (get_stick_all(match) == 0) {
             print_map(match->map, match->row);
             emit("player_loose", 0, 0);
             continue;
