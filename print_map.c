@@ -5,6 +5,8 @@
 ** print map
 */
 
+#include "my.h"
+
 void print_map(char **map, int row)
 {
     for (int i = 0; i < row; i++) {

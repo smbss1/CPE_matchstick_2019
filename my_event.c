@@ -9,7 +9,7 @@
 #include "my_event.h"
 #include "my.h"
 
-static listener_l listeners;
+static inline listener_l listeners;
 
 void on(char *name, void *var, void *handler, void *handler2)
 {

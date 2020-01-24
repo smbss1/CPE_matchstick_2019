@@ -5,7 +5,7 @@
 # make an executable
 #
 
-SRC =	main.c my_scanf.c debug.c print_map.c \
+SRC =	main.c debug.c print_map.c \
 		ia_file.c handle_error.c init_map.c my_event.c \
 		update.c loose_win_state.c erasable.c
 OBJ = $(SRC:.c=.o)

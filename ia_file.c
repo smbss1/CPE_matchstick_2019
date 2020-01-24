@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "match.h"
 #include "debug.h"
+#include "my.h"
 
 int get_number_of_stick(char **map, int line)
 {

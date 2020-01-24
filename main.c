@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** main
 ** File description:
-** Main Function
+** main function
 */
 
 #include "my.h"
@@ -12,12 +12,6 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-
-void on(char *name, void *var, void *handler, void *handler2);
-
-char **init_map(int row, int col);
-
-void print_map(char **map, int row);
 
 int my_str_contain(char *str, char c)
 {
@@ -32,7 +26,6 @@ void my_memset(void *ptr, int x, int n)
     unsigned char *temp = ptr;
     for (int i = 0; i < n; i++)
         *temp++ = x;
-    return ptr;
 }
 
 void erase_stick(match_t *match, int line, int num)
@@ -58,7 +51,11 @@ int main(int ac, char **av)
         return (84);
     srandom(time(NULL));
     match_t match = {0};
+    R_DEV_ASSERT(!my_str_isnum(av[1]), "", return (84));
+    R_DEV_ASSERT(!my_str_isnum(av[2]), "", return (84));
     match.lines = my_getnbr(av[1]);
+    if (my_getnbr(av[1]) < 0 || my_getnbr(av[2]) < 0)
+        return (84);
     match.coup_max = my_getnbr(av[2]);
     match.row = match.lines + 2;
     match.col = match.lines + match.lines + 1;

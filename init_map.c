@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "match.h"
 
 char **init_map(int row, int col)
 {

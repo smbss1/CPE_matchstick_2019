@@ -10,15 +10,6 @@
 #include "get_next_line.h"
 #include <stdlib.h>
 
-int my_exit(int status);
-
-int player_loose(void);
-
-int ai_loose(int st);
-
-const char *error1 = "Error: you cannot remove more than";
-const char *pl_remove = "Player removed";
-
 int get_stick_all(match_t *match)
 {
     int count = 0;
